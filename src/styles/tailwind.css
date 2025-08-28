@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background Colors */
+    --color-background: #f8fafc; /* slate-50 */
+    --color-foreground: #0f172a; /* slate-900 */
+    --color-card: #ffffff; /* white */
+    --color-card-foreground: #0f172a; /* slate-900 */
+    --color-popover: #ffffff; /* white */
+    --color-popover-foreground: #0f172a; /* slate-900 */
+    --color-surface: #f1f5f9; /* slate-100 */
+    
+    /* Border & Input Colors */
+    --color-border: #e2e8f0; /* slate-200 */
+    --color-input: #ffffff; /* white */
+    --color-ring: #1e3a8a; /* blue-800 */
+    
+    /* Muted Colors */
+    --color-muted: #f1f5f9; /* slate-100 */
+    --color-muted-foreground: #64748b; /* slate-500 */
+    
+    /* Primary Colors */
+    --color-primary: #1e3a8a; /* blue-800 */
+    --color-primary-foreground: #ffffff; /* white */
+    
+    /* Secondary Colors */
+    --color-secondary: #475569; /* slate-600 */
+    --color-secondary-foreground: #ffffff; /* white */
+    
+    /* Accent Colors */
+    --color-accent: #f59e0b; /* amber-500 */
+    --color-accent-foreground: #0f172a; /* slate-900 */
+    
+    /* State Colors */
+    --color-success: #059669; /* emerald-600 */
+    --color-success-foreground: #ffffff; /* white */
+    
+    --color-warning: #d97706; /* amber-600 */
+    --color-warning-foreground: #ffffff; /* white */
+    
+    --color-error: #dc2626; /* red-600 */
+    --color-error-foreground: #ffffff; /* white */
+    
+    --color-destructive: #dc2626; /* red-600 */
+    --color-destructive-foreground: #ffffff; /* white */
+    
+    /* Text Colors */
+    --color-text-primary: #0f172a; /* slate-900 */
+    --color-text-secondary: #64748b; /* slate-500 */
+    
+    /* Brand Specific Colors */
+    --color-brand-navy: #1e3a8a; /* blue-800 */
+    --color-brand-royal: #3730a3; /* violet-700 */
+    --color-brand-gold: #f59e0b; /* amber-500 */
+    --color-brand-slate: #475569; /* slate-600 */
+    
+    /* Spacing System */
+    --spacing-unit: 8px;
+    
+    /* Shadow System */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-brand: 0 4px 12px rgba(30, 58, 138, 0.08);
+    --shadow-brand-elevated: 0 8px 25px rgba(30, 58, 138, 0.12);
+    
+    /* Animation Timing */
+    --timing-fast: 150ms;
+    --timing-normal: 200ms;
+    --timing-slow: 300ms;
+    --timing-slower: 400ms;
+    --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Typography System */
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-feature-settings: "tnum";
+  }
+  
+  .font-sans {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Custom Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gradient-brand {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%);
+  }
+  
+  .gradient-brand-animated {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  /* Noise Texture Overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus Styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  /* Interactive Elements */
+  .interactive-lift {
+    transition: transform var(--timing-normal) var(--easing-smooth), 
+                box-shadow var(--timing-normal) var(--easing-smooth);
+  }
+  
+  .interactive-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-brand-elevated);
+  }
+  
+  /* Grid System */
+  .grid-spacing {
+    gap: calc(var(--spacing-unit) * 2);
+  }
+  
+  /* Backdrop Blur Utilities */
+  .backdrop-blur-brand {
+    backdrop-filter: blur(8px);
+    background: rgba(30, 58, 138, 0.95);
+  }
+}

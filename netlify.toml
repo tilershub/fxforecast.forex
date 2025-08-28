@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# SPA fallback (alternative to /public/_redirects)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
